@@ -1,19 +1,19 @@
 try {
-    # Ruta de la carpeta que contiene las im谩genes
-    $folderPath = "C:\Users\santi\Im醙enes\Random"
+    # Ruta de la carpeta que contiene las im脙隆genes
+    $folderPath = "Replace_with_folder_path"
 
     # Obtener todos los archivos .jpg y .png en la carpeta
     $files = Get-ChildItem -Path $folderPath
 
-    # Recorrer cada archivo y renombrarlo seg煤n la fecha de creaci贸n
+    # Recorrer cada archivo y renombrarlo seg脙潞n la fecha de creaci脙鲁n
     foreach ($file in $files) {
-        # Obtener la fecha de creaci贸n del archivo
+        # Obtener la fecha de creaci脙鲁n del archivo
         $creationDate = (Get-Item $file.FullName).CreationTime
         # Formatear la fecha en un formato adecuado para el nombre de archivo
         $dateString = $creationDate.ToString("yyyy-MM-dd")
-        # Construir el nuevo nombre de archivo con la extensi贸n original
+        # Construir el nuevo nombre de archivo con la extensi脙鲁n original
         $fileExtension = $file.Extension
-        # Construir el nuevo nombre de archivo con la extensi髇 original
+        # Construir el nuevo nombre de archivo con la extensi贸n original
         $newFileName = "$dateString$fileExtension"
         # Ruta completa para el nuevo nombre
         $newFilePath = Join-Path -Path $folderPath -ChildPath $newFileName
@@ -21,7 +21,7 @@ try {
         # Verificar si el nuevo nombre de archivo ya existe
         $counter = 1
         while (Test-Path $newFilePath) {
-            # Si el archivo existe, agregar un sufijo num閞ico
+            # Si el archivo existe, agregar un sufijo num茅rico
             $newFileName = "$dateString`_$counter$fileExtension"
             $newFilePath = Join-Path -Path $folderPath -ChildPath $newFileName
             $counter++
@@ -35,6 +35,6 @@ try {
     Write-Error "Error: $($_.Exception.Message)"
 }
 
-# Pausar la ejecuci贸n para que la ventana no se cierre autom谩ticamente
+# Pausar la ejecuci贸n para que la ventana no se cierre autom脙隆ticamente
 Write-Output "Presiona cualquier tecla para cerrar la ventana..."
 $null = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
